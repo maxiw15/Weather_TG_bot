@@ -1,23 +1,24 @@
 import telebot
 from weather import weather_want_know
-import time
-from datetime import datetime
+
 
 token = "5572813010:AAF18_DlYPryC6-GXcIswRG2q5QTZfWlavA"
 bot = telebot.TeleBot(token)
 
-now = datetime.now()
-current_time = now.strftime("%H:%M")
+
+@bot.message_handler(commands=['чепопогоде'])
+def send_welcome(message):
+    answer = (weather_want_know())
+    bot.reply_to(message, f"На улице {answer[0]} \n"
+                          f"Температура в настоящий момент {answer[1]} градусов.\n"
+                          f"Минимальная температура на сегодня {answer[2]} градусов.\n"
+                          f"Максимальная температура на "
+                          f"сегодня {answer[3]} градусов.")
 
 
-while True:
-    time.sleep(1)
-    if current_time != '6:00':
-        answer = (weather_want_know())
-        bot.send_message(467322175, f"Доброе утро, хозяин.\nНа улице {answer[0]} \n"
-                                    f"Температура в настоящий момент {answer[1]} градусов\n"
-                                    f"Минимальная температура на сегодня {answer[2]} градусов \n"
-                                    f"Максимальная температура на "
-                                    f"сегодня {answer[3]} градусов")
+@bot.message_handler(func=lambda message: True)
+def echo_all(message):
+    bot.reply_to(message, "доступная команда - /чепопогоде")
+
 
 bot.infinity_polling()
