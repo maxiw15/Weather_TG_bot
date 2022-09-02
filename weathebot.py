@@ -9,11 +9,12 @@ bot = telebot.TeleBot(token)
 while True:
     now = datetime.now()
     current_time = now.strftime("%H:%M")
-    time.sleep(30)
-    if current_time == "13:32":
+    time.sleep(60)
+    print(current_time)
+    if current_time[-1:-2] == "00":
         answer = (weather_want_know())
-        bot.send_message(467322175, f"Доброе утро.\nНа улице {answer[0]} \n"
-                                    f"Температура в настоящий момент {answer[1]} градусов.\n"
-                                    f"Минимальная температура на сегодня {answer[2]} градусов.\n"
+        bot.send_message(467322175, f"Доброе утро.\nНа улице {round(int(answer[0]))} \n"
+                                    f"Температура в настоящий момент {round(int(answer[1]))} градусов.\n"
+                                    f"Минимальная температура на сегодня {round(int(answer[2]))} градусов.\n"
                                     f"Максимальная температура на "
-                                    f"сегодня {answer[3]} градусов.")
+                                    f"сегодня {round(int(answer[3]))} градусов.")
