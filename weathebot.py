@@ -10,11 +10,9 @@ while True:
     now = datetime.now()
     current_time = now.strftime("%H:%M")
     time.sleep(60)
-    print(current_time)
-    if current_time[-1:-2] == "00":
+    if current_time[3:5] == '00':
         answer = (weather_want_know())
-        bot.send_message(467322175, f"Доброе утро.\nНа улице {round(int(answer[0]))} \n"
+        bot.send_message(467322175, f"Доброе утро.\nНа улице {answer[0]} \n"
                                     f"Температура в настоящий момент {round(int(answer[1]))} градусов.\n"
-                                    f"Минимальная температура на сегодня {round(int(answer[2]))} градусов.\n"
-                                    f"Максимальная температура на "
-                                    f"сегодня {round(int(answer[3]))} градусов.")
+                                    f"Минимальная температура  {round(int(answer[2]))} градусов.\n"
+                                    f"Максимальная температура {round(int(answer[3]))} градусов.")
