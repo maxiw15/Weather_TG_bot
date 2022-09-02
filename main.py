@@ -9,13 +9,15 @@ bot = telebot.TeleBot(token)
 now = datetime.now()
 current_time = now.strftime("%H:%M")
 
-# Запускаем цикл для проверки времени
+
 while True:
     time.sleep(1)
     if current_time != '6:00':
         answer = (weather_want_know())
-        bot.send_message(467322175, f"Доброе утро, хозяин.\nНа улице {answer[0]} \nТемпература в н.м. {answer[1]} \n"
-                                    f"Максимальная температура на сегодня {answer[2]} \nМинимальная температура на "
-                                    f"сегодня {answer[2]}")
+        bot.send_message(467322175, f"Доброе утро, хозяин.\nНа улице {answer[0]} \n"
+                                    f"Температура в настоящий момент {answer[1]} градусов\n"
+                                    f"Минимальная температура на сегодня {answer[2]} градусов \n"
+                                    f"Максимальная температура на "
+                                    f"сегодня {answer[3]} градусов")
 
 bot.infinity_polling()
