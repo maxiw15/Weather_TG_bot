@@ -1,6 +1,5 @@
 import requests
 
-thunderstrom_maybe = {True: "Возможно будет гроза", False: "Грозы не будет"}
 weather_dict = {"clear": "Ясно",
                 "partly-cloudy": "Малооблачно",
                 "cloudy": "Облачно с прояснениями",
@@ -23,6 +22,7 @@ weather_dict = {"clear": "Ясно",
 
 
 def weather_want_know():
+    global data
     try:
         url = "https://api.weather.yandex.ru/v2/forecast"
         headers = {'X-Yandex-API-Key': 'c8ff1703-12da-4776-89ca-55858ebd74da'}
@@ -30,20 +30,15 @@ def weather_want_know():
                                         'X-Yandex-API-Key': 'c8ff1703-12da-4776-89ca-55858ebd74da'}, headers=headers)
         data = res.json()
     finally:
-        return f'В настоящий момент Температура {data["fact"]["temp"]} градусов. \n' \
+        return f'В настоящий момент температура {data["fact"]["temp"]} градусов. \n' \
                f'Ощущается как {data["fact"]["feels_like"]} градусов. \n' \
                f'{weather_dict[data["fact"]["condition"]]}. \n' \
-               f'Скорость ветра {data["fact"]["wind_speed"]} м/с. \n' \
-               f'{thunderstrom_maybe[data["fact"]["is_thunder"]]}. \n' \
-               f'Вероятность осадков {data["fact"]["prec_type"]}. \n' \
-               f'Средняя температура вечером {data["forecasts"][0]["parts"]["evening"]["temp_avg"]} градусов. \n' \
-               f'Температура в 10 утра {data["forecasts"][0]["hours"][10]["temp"]} градусов. \n' \
-               f'Будет {weather_dict[data["forecasts"][0]["hours"][10]["condition"]]}. \n' \
-               f'Температура в 14 часов {data["forecasts"][0]["hours"][14]["temp"]} градусов. \n' \
-               f'Будет {weather_dict[data["forecasts"][0]["hours"][14]["condition"]]}. \n' \
-               f'Температура в 19 часов {data["forecasts"][0]["hours"][19]["temp"]}. \n' \
-               f'Будет {weather_dict[data["forecasts"][0]["hours"][19]["condition"]]} градусов. \n' \
-
+               f'Температура {data["forecasts"][0]["hours"][10]["temp"]}*, ' \
+               f'{data["forecasts"][0]["hours"][14]["temp"]}*, ' \
+               f' {data["forecasts"][0]["hours"][19]["temp"]}*\n' \
+               f'Будет {weather_dict[data["forecasts"][0]["hours"][10]["condition"]]}/' \
+               f'{weather_dict[data["forecasts"][0]["hours"][14]["condition"]]}/' \
+               f'{weather_dict[data["forecasts"][0]["hours"][19]["condition"]]}\n'
 
 
 def transport_want_know():
@@ -55,7 +50,3 @@ def transport_want_know():
         data = res.json()
     finally:
         return data
-
-
-answer = weather_want_know()
-print(answer)

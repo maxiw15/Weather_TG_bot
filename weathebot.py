@@ -12,9 +12,9 @@ while True:
     time.sleep(60)
     if current_time == '06:00':
         answer = weather_want_know()
-        bot.send_message(467322175, f"Доброе утро.\n {answer}")
+        bot.send_message(467322175, f"Доброе утро.\n{answer}")
     if current_time == "17:40":
         answer = weather_want_know()
-        bot.send_message(467322175, f"Добрый вечер.\n {answer}")
+        bot.send_message(467322175, f"Добрый вечер.\n{answer}")
 
 
