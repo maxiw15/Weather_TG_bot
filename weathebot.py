@@ -6,19 +6,24 @@ from datetime import datetime
 token = "5572813010:AAF18_DlYPryC6-GXcIswRG2q5QTZfWlavA"
 bot = telebot.TeleBot(token)
 
-while True:
-    now = datetime.now()
-    current_time = now.strftime("%H:%M")
-    time.sleep(60)
-    if current_time == '06:00':
-        answer = weather_want_know()
-        bot.send_photo(467322175, "https://bipbap.ru/wp-content/uploads/2017/04/0_7c779_5df17311_orig.jpg")
-        bot.send_message(467322175, f"Доброе утро.\n{answer}")
 
-    if current_time == "17:40":
-        answer = weather_want_know()
-        bot.send_photo(467322175, "https://klike.net/uploads/posts/2019-05/1556708032_1.jpg")
-        bot.send_message(467322175, f"Добрый вечер.\n{answer}")
+def time_weather(morning, evening, id):
+    while True:
+        now = datetime.now()
+        current_time = now.strftime("%H:%M")
+        time.sleep(60)
+        if current_time == '06:00' == morning:
+            answer = weather_want_know()
+            print(answer)
+            bot.send_photo(id, "https://bipbap.ru/wp-content/uploads/2017/04/0_7c779_5df17311_orig.jpg")
+            bot.send_message(id, f"Доброе утро.\n{answer}")
+
+        if current_time == "17:40" == evening:
+            answer = weather_want_know()
+            bot.send_photo(id, "https://klike.net/uploads/posts/2019-05/1556708032_1.jpg")
+            bot.send_message(id, f"Добрый вечер.\n{answer}")
 
 
-
+time_weather("09:00", "17:40", 467322175)
+time_weather("09:00", "17:40", 551376473)
+time_weather("09:00", "17:40", 488717704)

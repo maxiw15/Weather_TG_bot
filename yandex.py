@@ -1,4 +1,5 @@
 import requests
+from pprint import  pprint
 
 weather_dict = {"clear": "Ясно",
                 "partly-cloudy": "Малооблачно",
@@ -22,9 +23,8 @@ weather_dict = {"clear": "Ясно",
 
 
 def weather_want_know():
-    global data
     try:
-        url = "https://api.weather.yandex.ru/v2/forecast"
+        url = "https://api.weather.yandex.ru/v2/informers?"
         headers = {'X-Yandex-API-Key': 'c8ff1703-12da-4776-89ca-55858ebd74da'}
         res = requests.get(url, params={'lat': '55.4242', 'lon': '37.5547', 'lang': 'ru_RU', "hours": "true",
                                         'X-Yandex-API-Key': 'c8ff1703-12da-4776-89ca-55858ebd74da'}, headers=headers)
@@ -33,12 +33,7 @@ def weather_want_know():
         return f'В настоящий момент температура {data["fact"]["temp"]} градусов. \n' \
                f'Ощущается как {data["fact"]["feels_like"]} градусов. \n' \
                f'{weather_dict[data["fact"]["condition"]]}. \n' \
-               f'Температура {data["forecasts"][0]["hours"][10]["temp"]}*, ' \
-               f'{data["forecasts"][0]["hours"][14]["temp"]}*, ' \
-               f' {data["forecasts"][0]["hours"][19]["temp"]}*\n' \
-               f'Будет {weather_dict[data["forecasts"][0]["hours"][10]["condition"]]}/' \
-               f'{weather_dict[data["forecasts"][0]["hours"][14]["condition"]]}/' \
-               f'{weather_dict[data["forecasts"][0]["hours"][19]["condition"]]}\n'
+
 
 
 def transport_want_know():
@@ -50,3 +45,5 @@ def transport_want_know():
         data = res.json()
     finally:
         return data
+
+
