@@ -36,14 +36,4 @@ def weather_want_know():
 
 
 
-def transport_want_know():
-    try:
-        res = requests.get("https://api.rasp.yandex.net/v3.0/search/?",
-                           params={'from': "s9600731", "to": "s2001005", 'apikey': '548ab260-4f49-4ba5-9779'
-                                                                                   '-c05eeacfb9a0', 'format': 'json'})
-
-        data = res.json()
-    finally:
-        return data
-
 

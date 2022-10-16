@@ -2,7 +2,7 @@ import telebot
 from yandex import weather_want_know
 import time
 from datetime import datetime
-
+from tax import check_price
 token = "5572813010:AAF18_DlYPryC6-GXcIswRG2q5QTZfWlavA"
 bot = telebot.TeleBot(token)
 
@@ -10,7 +10,6 @@ bot = telebot.TeleBot(token)
 def time_weather(morning, evening, id):
     now = datetime.now()
     current_time = now.strftime("%H:%M")
-    time.sleep(60)
     if current_time == morning:
         answer = weather_want_know()
         bot.send_photo(id, "https://bipbap.ru/wp-content/uploads/2017/04/0_7c779_5df17311_orig.jpg")
@@ -23,6 +22,9 @@ def time_weather(morning, evening, id):
 
 
 while True:
-    time_weather("09:00", "17:40", 467322175)
+    time.sleep(60)
+    time_weather("06:30", "17:40", 467322175)
     time_weather("09:00", "17:40", 551376473)
     time_weather("09:00", "17:40", 488717704)
+    check_price()
+
