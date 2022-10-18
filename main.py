@@ -1,7 +1,8 @@
 import telebot
 from yandex import weather_want_know
+from my_token import token
 
-token = "5572813010:AAF18_DlYPryC6-GXcIswRG2q5QTZfWlavA"
+
 bot = telebot.TeleBot(token)
 
 

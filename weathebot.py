@@ -24,7 +24,7 @@ def time_weather(morning, evening, id):
 while True:
     time.sleep(60)
     time_weather("06:30", "17:40", 467322175)
-    time_weather("09:00", "17:40", 551376473)
-    time_weather("09:00", "17:40", 488717704)
+    time_weather("09:01", "17:41", 551376473)
+    time_weather("09:00", "17:42", 488717704)
     check_price()
 
